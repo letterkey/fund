@@ -159,6 +159,14 @@
       <artifactId>commons-codec</artifactId>
       <version>1.9</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>fund</finalName>
@@ -171,8 +179,8 @@
           <port>8080</port>
           <path>/fund</path>
           <uriEncoding>UTF-8</uriEncoding>
-          <finalName>dubbo-admin</finalName>
-          <server>tomcat7</server>
+          <finalName>fund</finalName>
+          <server>tomcat8</server>
         </configuration>
       </plugin>
     </plugins>
