@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.didi.care.driver.mapper.DriverCareRuleCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.didi.care.driver.model.DriverCareRuleCheck" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="driver_id" property="driverId" jdbcType="VARCHAR" />
+    <result column="candidate_rule_id" property="candidateRuleId" jdbcType="VARCHAR" />
+    <result column="candidate_rule" property="candidateRule" jdbcType="VARCHAR" />
+    <result column="fund_number" property="fundNumber" jdbcType="DOUBLE" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="data_id" property="dataId" jdbcType="VARCHAR" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, driver_id, candidate_rule_id, candidate_rule, fund_number, order_time, data_id, 
+    data_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from driver_care_rule_check
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="getByDriverId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from driver_care_rule_check
+    where driver_id = #{0} and order_time >=#{1} and order_time<=#{2}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from driver_care_rule_check
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.didi.care.driver.model.DriverCareRuleCheck" >
+    insert into driver_care_rule_check (id, driver_id, candidate_rule_id, 
+      candidate_rule, fund_number, order_time, 
+      data_id, data_type)
+    values (#{id,jdbcType=INTEGER}, #{driverId,jdbcType=VARCHAR}, #{candidateRuleId,jdbcType=VARCHAR}, 
+      #{candidateRule,jdbcType=VARCHAR}, #{fundNumber,jdbcType=DOUBLE}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{dataId,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.didi.care.driver.model.DriverCareRuleCheck" >
+    insert into driver_care_rule_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="candidateRuleId != null" >
+        candidate_rule_id,
+      </if>
+      <if test="candidateRule != null" >
+        candidate_rule,
+      </if>
+      <if test="fundNumber != null" >
+        fund_number,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="dataId != null" >
+        data_id,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="candidateRuleId != null" >
+        #{candidateRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="candidateRule != null" >
+        #{candidateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="fundNumber != null" >
+        #{fundNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataId != null" >
+        #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.didi.care.driver.model.DriverCareRuleCheck" >
+    update driver_care_rule_check
+    <set >
+      <if test="driverId != null" >
+        driver_id = #{driverId,jdbcType=VARCHAR},
+      </if>
+      <if test="candidateRuleId != null" >
+        candidate_rule_id = #{candidateRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="candidateRule != null" >
+        candidate_rule = #{candidateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="fundNumber != null" >
+        fund_number = #{fundNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataId != null" >
+        data_id = #{dataId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.didi.care.driver.model.DriverCareRuleCheck" >
+    update driver_care_rule_check
+    set driver_id = #{driverId,jdbcType=VARCHAR},
+      candidate_rule_id = #{candidateRuleId,jdbcType=VARCHAR},
+      candidate_rule = #{candidateRule,jdbcType=VARCHAR},
+      fund_number = #{fundNumber,jdbcType=DOUBLE},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      data_id = #{dataId,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

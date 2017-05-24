@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.didi.care.driver.dao.CareRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.didi.care.driver.domain.CareRule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="candidate_rule_id" property="candidateRuleId" jdbcType="INTEGER" />
+    <result column="candidate_rule" property="candidateRule" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="compensatory_fund" property="compensatoryFund" jdbcType="DOUBLE" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="creater_user_id" property="createrUserId" jdbcType="VARCHAR" />
+    <result column="service_line_id" property="serviceLineId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, candidate_rule_id, candidate_rule, area_id, state, compensatory_fund, start_date, 
+    end_date, create_time, creater_user_id, service_line_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from care_rule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from care_rule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.didi.care.driver.domain.CareRule" >
+    insert into care_rule (id, candidate_rule_id, candidate_rule, 
+      area_id, state, compensatory_fund, 
+      start_date, end_date, create_time, 
+      creater_user_id, service_line_id)
+    values (#{id,jdbcType=INTEGER}, #{candidateRuleId,jdbcType=INTEGER}, #{candidateRule,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=INTEGER}, #{state,jdbcType=TINYINT}, #{compensatoryFund,jdbcType=DOUBLE}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createrUserId,jdbcType=VARCHAR}, #{serviceLineId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.didi.care.driver.domain.CareRule" >
+    insert into care_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="candidateRuleId != null" >
+        candidate_rule_id,
+      </if>
+      <if test="candidateRule != null" >
+        candidate_rule,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="compensatoryFund != null" >
+        compensatory_fund,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createrUserId != null" >
+        creater_user_id,
+      </if>
+      <if test="serviceLineId != null" >
+        service_line_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="candidateRuleId != null" >
+        #{candidateRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="candidateRule != null" >
+        #{candidateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="compensatoryFund != null" >
+        #{compensatoryFund,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrUserId != null" >
+        #{createrUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLineId != null" >
+        #{serviceLineId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.didi.care.driver.domain.CareRule" >
+    update care_rule
+    <set >
+      <if test="candidateRuleId != null" >
+        candidate_rule_id = #{candidateRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="candidateRule != null" >
+        candidate_rule = #{candidateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="compensatoryFund != null" >
+        compensatory_fund = #{compensatoryFund,jdbcType=DOUBLE},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createrUserId != null" >
+        creater_user_id = #{createrUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceLineId != null" >
+        service_line_id = #{serviceLineId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.didi.care.driver.domain.CareRule" >
+    update care_rule
+    set candidate_rule_id = #{candidateRuleId,jdbcType=INTEGER},
+      candidate_rule = #{candidateRule,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      state = #{state,jdbcType=TINYINT},
+      compensatory_fund = #{compensatoryFund,jdbcType=DOUBLE},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      creater_user_id = #{createrUserId,jdbcType=VARCHAR},
+      service_line_id = #{serviceLineId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
